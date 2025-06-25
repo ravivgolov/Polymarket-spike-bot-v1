@@ -73,20 +73,20 @@ USDC_CONTRACT_ADDRESS=0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174
 POLYMARKET_SETTLEMENT_CONTRACT=0x56C79347e95530c01A2FC76E732f9566dA16E113
 
 # Trading Parameters
-trade_unit=30.0                   # $30 per trade, lets you open ~8 trades max
-spike_threshold=0.015             # 1.5% spike triggers entry (less frequent, stronger)
-slippage_tolerance=0.015          # avoid bad fills
-pct_profit=0.20                   # take 20% profit (e.g., $6 profit on $30)
-pct_loss=-0.08                    # cut loss at 8% (e.g., $2.40 loss)
-cash_profit=6.0                   # hard profit stop (same as pct)
-cash_loss=-3.0                    # hard loss stop
-holding_time_limit=7200           # max 2 hours hold, then exit
-sold_position_time=120            # hold 2 mins after profit before selling
-cooldown_period=10                # avoid trading same market repeatedly
+trade_unit=30.0                   # Increase position size for meaningful profits
+slippage_tolerance=0.015          # Tighter entry to avoid bad fills
+pct_profit=0.20                   # Take 20% profit (≈ $6 per $30 trade)
+pct_loss=-0.08                    # Cut at 8% loss (≈ $2.4)
+cash_profit=6.0                   # Same as above
+cash_loss=-3.0                    # Same as above
+spike_threshold=0.015             # Slightly looser for more entries
+sold_position_time=120            # Hold for 2 minutes after profit
+holding_time_limit=7200           # Let it ride for up to 2 hours
+price_history_size=150            # More history = better spike detection
+cooldown_period=10
 keep_min_shares=1
-max_concurrent_trades=4           # no more than 4 open trades
-min_liquidity_requirement=20.0    # don't enter dead markets
-price_history_size=150
+max_concurrent_trades=4           # Allow 4 parallel trades
+min_liquidity_requirement=20.0    # Avoid low-liquidity traps
 ```
 
 ## Configuration Parameters
