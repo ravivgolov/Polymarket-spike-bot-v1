@@ -73,20 +73,45 @@ USDC_CONTRACT_ADDRESS=0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174
 POLYMARKET_SETTLEMENT_CONTRACT=0x56C79347e95530c01A2FC76E732f9566dA16E113
 
 # Trading Parameters
-trade_unit=3.0
-slippage_tolerance=0.02
-pct_profit=0.03
-pct_loss=-0.025
-cash_profit=1.0
-cash_loss=-0.75
-spike_threshold=0.02
-sold_position_time=120
-holding_time_limit=3600
-price_history_size=100
+# Size of each trade (risk ~5% of balance per trade)
+trade_unit=12.5
+
+# Accept up to 3% slippage
+slippage_tolerance=0.03
+
+# Take 5% profit
+pct_profit=0.05
+
+# Cut loss if down 2%
+pct_loss=-0.02
+
+# Disable fixed $ profit/loss targeting
+cash_profit=0
+cash_loss=0
+
+# Require 4% price spike to trigger
+spike_threshold=0.04
+
+# Wait 3 min before re-entering market
+sold_position_time=180
+
+# Auto-close trade if not exited after 30 min
+holding_time_limit=1800
+
+# Use last 60 price points (more responsive to spikes)
+price_history_size=60
+
+# Wait 10s between trades
 cooldown_period=10
+
+# Always keep 1 share to watch market
 keep_min_shares=1
-max_concurrent_trades=3
-min_liquidity_requirement=10.0
+
+# Max 2 trades at once to spread risk
+max_concurrent_trades=2
+
+# Only enter liquid markets
+min_liquidity_requirement=20.0
 ```
 
 ## Configuration Parameters
