@@ -73,45 +73,20 @@ USDC_CONTRACT_ADDRESS=0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174
 POLYMARKET_SETTLEMENT_CONTRACT=0x56C79347e95530c01A2FC76E732f9566dA16E113
 
 # Trading Parameters
-# Size of each trade (risk ~5% of balance per trade)
-trade_unit=12.5
-
-# Accept up to 3% slippage
-slippage_tolerance=0.03
-
-# Take 5% profit
-pct_profit=0.05
-
-# Cut loss if down 2%
-pct_loss=-0.02
-
-# Disable fixed $ profit/loss targeting
-cash_profit=0
-cash_loss=0
-
-# Require 4% price spike to trigger
-spike_threshold=0.04
-
-# Wait 3 min before re-entering market
-sold_position_time=180
-
-# Auto-close trade if not exited after 30 min
-holding_time_limit=1800
-
-# Use last 60 price points (more responsive to spikes)
-price_history_size=60
-
-# Wait 10s between trades
-cooldown_period=10
-
-# Always keep 1 share to watch market
+trade_unit=30.0                   # $30 per trade, lets you open ~8 trades max
+spike_threshold=0.015             # 1.5% spike triggers entry (less frequent, stronger)
+slippage_tolerance=0.015          # avoid bad fills
+pct_profit=0.20                   # take 20% profit (e.g., $6 profit on $30)
+pct_loss=-0.08                    # cut loss at 8% (e.g., $2.40 loss)
+cash_profit=6.0                   # hard profit stop (same as pct)
+cash_loss=-3.0                    # hard loss stop
+holding_time_limit=7200           # max 2 hours hold, then exit
+sold_position_time=120            # hold 2 mins after profit before selling
+cooldown_period=10                # avoid trading same market repeatedly
 keep_min_shares=1
-
-# Max 2 trades at once to spread risk
-max_concurrent_trades=2
-
-# Only enter liquid markets
-min_liquidity_requirement=20.0
+max_concurrent_trades=4           # no more than 4 open trades
+min_liquidity_requirement=20.0    # don't enter dead markets
+price_history_size=150
 ```
 
 ## Configuration Parameters
